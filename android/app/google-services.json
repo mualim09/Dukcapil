@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "73119696240",
+    "project_id": "zavalabs-dukcapil",
+    "storage_bucket": "zavalabs-dukcapil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73119696240:android:beb6ffdc40677d2ed1fbb5",
+        "android_client_info": {
+          "package_name": "com.zavalabsdukcapil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73119696240-7l7sed931vveupt3uckeelketjtq7hgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9VyRutVggKro07Mz5RoFHfUgj0gPUDIY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73119696240-7l7sed931vveupt3uckeelketjtq7hgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
