@@ -61,7 +61,30 @@ export default function GetStarted({navigation}) {
           }}
         />
       </View>
+      <View
+        style={{
+          justifyContent: 'center',
+          alignItems: 'center',
 
+          marginBottom: 100,
+        }}>
+        <Text
+          style={{
+            fontFamily: fonts.secondary[900],
+            color: colors.primary,
+            fontSize: windowWidth / 4,
+          }}>
+          SIAP
+        </Text>
+        <Text
+          style={{
+            fontFamily: fonts.secondary[800],
+            color: colors.primary,
+            fontSize: windowWidth / 16,
+          }}>
+          DUKCAPIL BUTUR
+        </Text>
+      </View>
       <MyButton
         title="LOGIN"
         Icons="log-in-outline"

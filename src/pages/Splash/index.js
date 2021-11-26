@@ -100,9 +100,18 @@ export default function Splash({navigation}) {
               aspectRatio: scaleLogo,
             }}
           />
+
           <ActivityIndicator size="large" color={colors.primary} />
         </View>
       </View>
+      {/* <Text
+        style={{
+          fontFamily: fonts.secondary[600],
+          color: colors.white,
+          fontSize: windowWidth / 20,
+        }}>
+        SIAP DUKCAPIL BUTUR
+      </Text> */}
     </SafeAreaView>
   );
 }

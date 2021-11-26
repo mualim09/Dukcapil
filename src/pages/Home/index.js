@@ -128,7 +128,7 @@ export default function Home({navigation}) {
           padding: 5,
           borderRadius: 10,
           width: windowWidth / 3.5,
-          height: windowHeight / 6,
+          height: windowHeight / 8,
           elevation: 5,
           justifyContent: 'center',
         }}>
@@ -136,7 +136,7 @@ export default function Home({navigation}) {
           <Icon
             type="ionicon"
             name={icon}
-            color={colors.white}
+            color={colors.secondary}
             size={windowWidth / 10}
           />
         </View>
@@ -230,10 +230,20 @@ export default function Home({navigation}) {
 
         {/* <MyDashboard tipe={tipe} /> */}
 
+        <Text
+          style={{
+            marginTop: 10,
+            textAlign: 'center',
+            fontFamily: fonts.secondary[800],
+            color: colors.black,
+            fontSize: windowWidth / 20,
+          }}>
+          MENU LAYANAN
+        </Text>
+
         <View
           style={{
             padding: 10,
-            marginTop: 20,
           }}>
           <View
             style={{
@@ -243,21 +253,21 @@ export default function Home({navigation}) {
             }}>
             <DataKategori
               onPress={() => navigation.navigate('Akses')}
-              icon="download-outline"
-              nama="DOWNLOAD"
-              nama2="FORMULIR"
+              icon="print-outline"
+              nama="AKTA"
+              nama2="KELAHIRAN"
+            />
+            <DataKategori
+              onPress={() => navigation.navigate('Akses')}
+              icon="print-outline"
+              nama="AKTA"
+              nama2="KEMATIAN"
             />
             <DataKategori
               onPress={() => navigation.navigate('SuratIzin')}
-              icon="file-tray-full-outline"
-              nama="PERSYARATAN"
-              nama2="DOKUMEN"
-            />
-            <DataKategori
-              onPress={() => navigation.navigate('SuratIzin')}
-              icon="book-outline"
-              nama="TATA CARA"
-              nama2="PENGGUNAAN"
+              icon="card-outline"
+              nama="KTP"
+              nama2="ELEKTRONIK"
             />
           </View>
           {/*  */}
@@ -268,22 +278,50 @@ export default function Home({navigation}) {
               marginTop: 15,
             }}>
             <DataKategori
-              onPress={() => navigation.navigate('ListData')}
-              icon="card-outline"
-              nama="CEK BLANKO"
-              nama2="E - KTP"
-            />
-            <DataKategori
               onPress={() => navigation.navigate('ListData2')}
               icon="folder-outline"
-              nama="AJUKAN"
-              nama2="PERMOHONAN"
+              nama="KARTU"
+              nama2="KELUARGA"
+            />
+            <DataKategori
+              onPress={() => navigation.navigate('ListData')}
+              icon="log-out-outline"
+              nama="PERPINDAHAN"
+              nama2="KELUAR"
             />
             <DataKategori
               onPress={() => navigation.navigate('ListData2')}
-              icon="list-outline"
-              nama="STATUS"
-              nama2="PERMOHONAN"
+              icon="log-in-outline"
+              nama="KEDATRANGAN"
+              nama2="PENUDUDUK"
+            />
+          </View>
+
+          {/*  */}
+          {/*  */}
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              marginTop: 15,
+            }}>
+            <DataKategori
+              onPress={() => navigation.navigate('ListData2')}
+              icon="card-outline"
+              nama="KARTU"
+              nama2="IDENTITAS ANAK"
+            />
+            <DataKategori
+              onPress={() => navigation.navigate('ListData')}
+              icon="create-outline"
+              nama="UPDATE"
+              nama2="DATA"
+            />
+            <DataKategori
+              onPress={() => navigation.navigate('ListData2')}
+              icon="logo-whatsapp"
+              nama="PUSAT"
+              nama2="INFORMASI"
             />
           </View>
 
