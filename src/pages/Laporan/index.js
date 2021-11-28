@@ -10,6 +10,7 @@ import WebView from 'react-native-webview';
 import {colors} from '../../utils/colors';
 
 export default function Laporan({route}) {
+  const item = route.params;
   const [user, setUser] = useState({});
   const [visible, setVisible] = useState(true);
 
@@ -17,7 +18,7 @@ export default function Laporan({route}) {
     setVisible(false);
   };
 
-  const myUrl = `https://zavalabs.com/sigadisbekasi/api/laporan.php`;
+  const myUrl = `https://zavalabs.com/dukcapil/api/menu_detail.php?id=${item.id}`;
 
   return (
     <SafeAreaView

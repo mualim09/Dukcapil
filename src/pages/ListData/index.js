@@ -14,6 +14,7 @@ import {storeData, getData} from '../../utils/localStorage';
 import axios from 'axios';
 import {colors} from '../../utils/colors';
 import {windowWidth, fonts} from '../../utils/fonts';
+import {Icon} from 'react-native-elements/dist/icons/Icon';
 
 const wait = timeout => {
   return new Promise(resolve => {
@@ -37,7 +38,7 @@ export default function ({navigation, route}) {
   const getDataBarang = () => {
     getData('user').then(res => {
       axios
-        .post('https://zavalabs.com/tubaba/api/absen.php', {
+        .post('https://zavalabs.com/dukcapil/api/menu.php', {
           id_user: res.id,
         })
         .then(x => {
@@ -49,104 +50,33 @@ export default function ({navigation, route}) {
 
   const renderItem = ({item}) => (
     <TouchableOpacity
+      onPress={() => navigation.navigate('Laporan', item)}
       style={{
         padding: 10,
         margin: 10,
-        backgroundColor: 'white',
+        borderRadius: 5,
+        backgroundColor: colors.primary,
+        borderBottomWidth: 5,
+        borderBottomColor: colors.secondary,
         elevation: 1,
       }}>
-      <View style={{flexDirection: 'row', padding: 10}}>
-        <Text
-          style={{
-            flex: 1,
-            fontSize: windowWidth / 30,
-            color: colors.primary,
-            fontFamily: fonts.secondary[600],
-          }}>
-          {item.nama_lengkap}
-        </Text>
-        <Text
-          style={{
-            fontSize: windowWidth / 30,
-            color: colors.black,
-            fontFamily: fonts.secondary[600],
-          }}>
-          {item.tanggal}
-        </Text>
-      </View>
-
       <View
         style={{
           flexDirection: 'row',
-          padding: 10,
-          borderTopWidth: 1,
-          borderTopColor: colors.tertiary,
+          // padding: 10,
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
-        <View
+        <Text
           style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            // flex: 1,
+            flex: 1,
+            fontSize: windowWidth / 35,
+            color: colors.white,
+            fontFamily: fonts.secondary[600],
           }}>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              fontFamily: fonts.secondary[600],
-              color: colors.black,
-            }}>
-            MASUK
-          </Text>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              textAlign: 'center',
-              color: colors.secondary,
-            }}>
-            {item.jam_masuk}
-          </Text>
-        </View>
-        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              textAlign: 'center',
-              color: colors.primary,
-            }}>
-            Lama Bekerja
-          </Text>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              textAlign: 'center',
-              color: colors.black,
-            }}>
-            {item.durasi}
-          </Text>
-        </View>
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-
-            // flex: 1,
-          }}>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              fontFamily: fonts.secondary[600],
-              color: colors.black,
-            }}>
-            PULANG
-          </Text>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              textAlign: 'center',
-              color: colors.secondary,
-            }}>
-            {item.jam_pulang}
-          </Text>
-        </View>
+          {item.judul}
+        </Text>
+        <Icon type="ionicon" name="folder-open" color={colors.secondary} />
       </View>
     </TouchableOpacity>
   );
@@ -163,6 +93,15 @@ export default function ({navigation, route}) {
       style={{
         padding: 10,
       }}>
+      <Text
+        style={{
+          fontSize: windowWidth / 30,
+          textAlign: 'center',
+          color: colors.black,
+          fontFamily: fonts.secondary[600],
+        }}>
+        PELAYANAN KEPENDUDUKAN
+      </Text>
       <FlatList
         data={data}
         renderItem={renderItem}

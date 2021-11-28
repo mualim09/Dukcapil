@@ -41,7 +41,7 @@ export default function Account({navigation, route}) {
   }, [isFocused]);
 
   const btnKeluar = () => {
-    Alert.alert('SICAPIL ONLINE', 'Apakah Anda yakin akan keluar ?', [
+    Alert.alert('SIAP DUKCAPIL BUTUR', 'Apakah Anda yakin akan keluar ?', [
       {
         text: 'Cancel',
         onPress: () => console.log('Cancel Pressed'),

@@ -9,13 +9,12 @@ import {
   RefreshControl,
   Image,
   TouchableOpacity,
-  Alert,
 } from 'react-native';
 import {storeData, getData} from '../../utils/localStorage';
 import axios from 'axios';
 import {colors} from '../../utils/colors';
 import {windowWidth, fonts} from '../../utils/fonts';
-import {Icon} from 'react-native-elements';
+import {Icon} from 'react-native-elements/dist/icons/Icon';
 
 const wait = timeout => {
   return new Promise(resolve => {
@@ -39,7 +38,7 @@ export default function ({navigation, route}) {
   const getDataBarang = () => {
     getData('user').then(res => {
       axios
-        .post('https://zavalabs.com/tubaba/api/absen_izin.php', {
+        .post('https://zavalabs.com/dukcapil/api/menu2.php', {
           id_user: res.id,
         })
         .then(x => {
@@ -50,176 +49,36 @@ export default function ({navigation, route}) {
   };
 
   const renderItem = ({item}) => (
-    <View
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Laporan', item)}
       style={{
         padding: 10,
         margin: 10,
-        backgroundColor: 'white',
+        borderRadius: 5,
+        backgroundColor: colors.tertiary,
+        borderBottomWidth: 5,
+        borderBottomColor: colors.secondary,
         elevation: 1,
       }}>
-      <View style={{flexDirection: 'row', padding: 10}}>
-        <Text
-          style={{
-            flex: 1,
-            fontSize: windowWidth / 30,
-            color: colors.secondary,
-            fontFamily: fonts.secondary[600],
-          }}>
-          {item.nama_lengkap}
-        </Text>
-        <Text
-          style={{
-            fontSize: windowWidth / 30,
-            color: colors.black,
-            fontFamily: fonts.secondary[600],
-          }}>
-          {item.tanggal}
-        </Text>
-      </View>
-
       <View
         style={{
           flexDirection: 'row',
-          padding: 10,
-          borderTopWidth: 1,
-          borderTopColor: colors.tertiary,
+          // padding: 10,
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
-        <View
+        <Text
           style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            // flex: 1,
+            flex: 1,
+            fontSize: windowWidth / 35,
+            color: colors.white,
+            fontFamily: fonts.secondary[600],
           }}>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              fontFamily: fonts.secondary[600],
-              color: colors.black,
-            }}>
-            {item.tipe}
-          </Text>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              textAlign: 'center',
-              color: colors.secondary,
-            }}>
-            {item.jam_masuk}
-          </Text>
-        </View>
-        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
-          <Text
-            style={{
-              fontSize: windowWidth / 35,
-              textAlign: 'center',
-              color: colors.black,
-            }}>
-            STATUS
-          </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <Icon
-              type="ionicon"
-              name={
-                item.status == 'DISETUJUI'
-                  ? 'shield-checkmark-outline'
-                  : 'mail-unread-outline'
-              }
-              color={
-                item.status == 'DISETUJUI' ? colors.secondary : colors.primary
-              }
-            />
-            <Text
-              style={{
-                left: 5,
-                fontSize: windowWidth / 35,
-                textAlign: 'center',
-                color:
-                  item.status == 'DISETUJUI'
-                    ? colors.secondary
-                    : colors.primary,
-              }}>
-              {item.status}
-            </Text>
-          </View>
-        </View>
-        <View
-          style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-
-            // flex: 1,
-          }}>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              fontFamily: fonts.secondary[600],
-              color: colors.black,
-            }}>
-            {item.jumlah} hari
-          </Text>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              textAlign: 'center',
-              color: colors.secondary,
-            }}>
-            {item.jam_pulang}
-          </Text>
-        </View>
+          {item.judul}
+        </Text>
+        <Icon type="ionicon" name="folder-open" color={colors.secondary} />
       </View>
-      {item.status == 'MENUNGGU PERSETUJUAN' && (
-        <TouchableOpacity
-          onPress={() => {
-            Alert.alert(
-              'Absen Online',
-              'Apakah Anda Yakin Akan Batalkan Pengajuan ?',
-              [
-                {
-                  text: 'Cancel',
-                  onPress: () => console.log('Cancel Pressed'),
-                  style: 'cancel',
-                },
-                {
-                  text: 'OK',
-                  onPress: () => {
-                    axios
-                      .post(
-                        'https://zavalabs.com/tubaba/api/absen_izin_hapus.php',
-                        {
-                          id_izin: item.id_izin,
-                        },
-                      )
-                      .then(res => {
-                        getDataBarang();
-                      });
-                  },
-                },
-              ],
-            );
-          }}
-          style={{
-            padding: 10,
-            backgroundColor: colors.primary,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <Text
-            style={{
-              fontSize: windowWidth / 30,
-              textAlign: 'center',
-              fontFamily: fonts.secondary[600],
-              color: colors.white,
-            }}>
-            Batalkan Izin
-          </Text>
-        </TouchableOpacity>
-      )}
-    </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -234,6 +93,15 @@ export default function ({navigation, route}) {
       style={{
         padding: 10,
       }}>
+      <Text
+        style={{
+          fontSize: windowWidth / 30,
+          textAlign: 'center',
+          color: colors.black,
+          fontFamily: fonts.secondary[600],
+        }}>
+        PELAYANAN PENCATATAN SIPIL
+      </Text>
       <FlatList
         data={data}
         renderItem={renderItem}

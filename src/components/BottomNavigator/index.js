@@ -56,10 +56,10 @@ export default function BottomNavigator({state, descriptors, navigation}) {
           iconName = 'home-outline';
         } else if (label === 'Account') {
           iconName = 'person-outline';
-        } else if (label === 'Laporan') {
+        } else if (label === 'Kependudukan') {
           iconName = 'grid-outline';
-        } else if (label === 'ChatWa') {
-          iconName = 'chatbubbles-outline';
+        } else if (label === 'Pencatatan Sipil') {
+          iconName = 'create-outline';
         } else if (label === 'Cart') {
           iconName = 'cart';
         } else if (label === 'Pesanan') {
