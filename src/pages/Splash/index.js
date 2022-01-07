@@ -69,7 +69,7 @@ export default function Splash({navigation}) {
         console.log('sudah login logon');
 
         setTimeout(() => {
-          navigation.replace('MainApp');
+          // navigation.replace('MainApp');
         }, 1500);
       }
     });
@@ -77,48 +77,51 @@ export default function Splash({navigation}) {
 
   return (
     <SafeAreaView style={styles.page}>
+      <View>
+        <Animated.Image
+          source={require('../../assets/logo.png')}
+          style={{
+            resizeMode: 'contain',
+            // resizeMode: 'center',
+
+            height: 220,
+
+            aspectRatio: scaleLogo,
+          }}
+        />
+      </View>
+
       <View
         style={{
-          flex: 1,
-          backgroundColor: colors.white,
           justifyContent: 'center',
+          alignItems: 'center',
         }}>
-        <View
+        <Text
           style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-
-            // paddingBottom: windowHeight / 4,
+            fontFamily: fonts.secondary[900],
+            color: colors.primary,
+            fontSize: windowWidth / 4,
           }}>
-          <Animated.Image
-            source={require('../../assets/logo.png')}
-            style={{
-              resizeMode: 'contain',
-              // resizeMode: 'center',
-
-              height: 300,
-              aspectRatio: scaleLogo,
-            }}
-          />
-
-          <ActivityIndicator size="large" color={colors.primary} />
-        </View>
+          SIAP
+        </Text>
+        <Text
+          style={{
+            fontFamily: fonts.secondary[800],
+            color: colors.secondary,
+            fontSize: windowWidth / 16,
+            bottom: 20,
+          }}>
+          DUKCAPIL BUTUR
+        </Text>
+        <ActivityIndicator size="large" color={colors.primary} />
       </View>
-      {/* <Text
-        style={{
-          fontFamily: fonts.secondary[600],
-          color: colors.white,
-          fontSize: windowWidth / 20,
-        }}>
-        SIAP DUKCAPIL BUTUR
-      </Text> */}
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   page: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,

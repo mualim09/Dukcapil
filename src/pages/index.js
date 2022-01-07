@@ -37,9 +37,11 @@ import Pinjam from './Pinjam';
 import ListData2 from './ListData2';
 import Jadwal from './Jadwal';
 import SuratIzin from './SuratIzin';
+import Laporan2 from './Laporan2';
 
 export {
   Splash,
+  Laporan2,
   SuratIzin,
   Jadwal,
   Pinjam,

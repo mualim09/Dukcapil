@@ -1,125 +1,73 @@
-import React from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  Button,
   Image,
-  Animated,
   Dimensions,
-  ImageBackground,
-  StatusBar,
   SafeAreaView,
 } from 'react-native';
-import {MyButton, MyGap} from '../../components';
-import {colors} from '../../utils/colors';
-import {color} from 'react-native-reanimated';
 import {fonts} from '../../utils/fonts';
-import LottieView from 'lottie-react-native';
-import FastImage from 'react-native-fast-image';
+import {WebView} from 'react-native-webview';
+import {getData} from '../../utils/localStorage';
+import {Icon} from 'react-native-elements';
+import {colors} from '../../utils/colors';
 
-export default function GetStarted({navigation}) {
+export default function GetStarted({navigation, route}) {
   const windowWidth = Dimensions.get('window').width;
   const windowHeight = Dimensions.get('window').height;
+  const [user, setUser] = useState({});
 
-  const bottom = new Animated.Value(windowWidth);
-  const opacity = new Animated.Value(0);
-  const top = new Animated.Value(0);
+  const webViewRef = useRef(null);
 
-  Animated.timing(bottom, {
-    toValue: 100,
-    duration: 1200,
-    useNativeDriver: false,
-  }).start();
-
-  Animated.timing(opacity, {
-    toValue: 1,
-    duration: 1000,
-    useNativeDriver: false,
-  }).start();
-
-  Animated.timing(top, {
-    toValue: 50,
-    duration: 1000,
-    useNativeDriver: false,
-  }).start();
+  const goback = () => {
+    webViewRef.current.goBack();
+  };
 
   return (
-    <SafeAreaView style={styles.page} resizeMode="cover">
-      {/* <StatusBar backgroundColor={colors.secondary} barStyle="light-content" /> */}
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Image
-          source={require('../../assets/logo.png')}
-          style={{
-            resizeMode: 'contain',
-            aspectRatio: 0.5,
-          }}
-        />
-      </View>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-
-          marginBottom: 100,
-        }}>
-        <Text
-          style={{
-            fontFamily: fonts.secondary[900],
-            color: colors.primary,
-            fontSize: windowWidth / 4,
-          }}>
-          SIAP
-        </Text>
-        <Text
-          style={{
-            fontFamily: fonts.secondary[800],
-            color: colors.primary,
-            fontSize: windowWidth / 16,
-          }}>
-          DUKCAPIL BUTUR
-        </Text>
-      </View>
-      <MyButton
-        title="LOGIN"
-        Icons="log-in-outline"
-        warna={colors.primary}
-        onPress={() => navigation.navigate('Login')}
+    <SafeAreaView
+      style={{
+        flex: 1,
+        // padding: 10,
+      }}>
+      <WebView
+        ref={webViewRef}
+        injectedJavaScript={`const meta = document.createElement('meta'); meta.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0'); meta.setAttribute('name', 'viewport'); document.getElementsByTagName('head')[0].appendChild(meta); `}
+        scalesPageToFit={false}
+        source={{
+          uri: 'https://dukcapil.butonutarakab.go.id/',
+        }}
       />
-
-      <MyGap jarak={20} />
-
-      <MyButton
-        title="REGISTER"
-        iconColor={colors.primary}
-        borderSize={1}
-        borderColor={colors.primary}
-        Icons="book-outline"
-        colorText={colors.primary}
-        // warna={colors.secondary}
-        onPress={() => navigation.navigate('Register')}
-      />
-
-      <Animated.View style={{height: top}} />
+      <View style={styles.navbar}>
+        <View style={styles.back}>
+          <Icon
+            name="arrow-back-outline"
+            size={30}
+            color={colors.white}
+            type="ionicon"
+            onPress={goback}
+          />
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  page: {
-    backgroundColor: colors.white,
-    flex: 1,
-    padding: 20,
+  navbar: {
+    height: 50,
+    width: '100%',
+    padding: 10,
+    flexDirection: 'row-reverse',
+    backgroundColor: colors.primary,
   },
-  title: {
-    marginTop: 50,
-    fontFamily: fonts.secondary[800],
-    fontSize: 50,
-    color: colors.primary,
+  back: {
+    width: 50,
+    height: 50,
+    marginRight: 10,
+  },
+  forward: {
+    width: 50,
+    height: 50,
   },
 });

@@ -33,41 +33,10 @@ export default function Home({navigation}) {
   const [tipe, setTipe] = useState('');
   const [company, setCompany] = useState({});
 
-  messaging().onMessage(async remoteMessage => {
-    // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-    const json = JSON.stringify(remoteMessage);
-    const obj = JSON.parse(json);
-    // alert(obj.notification);
-    // console.log('list transaksi', obj.notification);
-    getData('user').then(res => {
-      setUser(res);
-      // console.log(res);
-      // alert('email' + res.email + ' dan password ' + res.password);
-
-      axios
-        .post('https://zavalabs.com/sigadisbekasi/api/point.php', {
-          id_member: res.id,
-        })
-        .then(respoint => {
-          setPoint(respoint.data);
-          console.log('get apoint', respoint.data);
-        });
-
-      axios
-        .post('https://zavalabs.com/sigadisbekasi/api/get_member.php', {
-          email: res.email,
-          password: res.password,
-        })
-        .then(rese => {
-          setUser(rese.data);
-          storeData('user', rese.data);
-        });
-    });
-  });
-
   useEffect(() => {
-    getData('company').then(res => {
-      setCompany(res);
+    axios.get('https://zavalabs.com/dukcapil/api/company.php').then(res => {
+      setCompany(res.data);
+      console.log('company', res);
     });
 
     getData('tipe').then(res => {
@@ -252,19 +221,31 @@ export default function Home({navigation}) {
               marginTop: 15,
             }}>
             <DataKategori
-              onPress={() => navigation.navigate('Akses')}
+              onPress={() =>
+                navigation.navigate('Laporan2', {
+                  id: 'AKTA KELAHIRAN',
+                })
+              }
               icon="print-outline"
               nama="AKTA"
               nama2="KELAHIRAN"
             />
             <DataKategori
-              onPress={() => navigation.navigate('Akses')}
+              onPress={() =>
+                navigation.navigate('Laporan2', {
+                  id: 'AKTA KEMATIAN',
+                })
+              }
               icon="print-outline"
               nama="AKTA"
               nama2="KEMATIAN"
             />
             <DataKategori
-              onPress={() => navigation.navigate('SuratIzin')}
+              onPress={() =>
+                navigation.navigate('Laporan2', {
+                  id: 'KTP Elektronik',
+                })
+              }
               icon="card-outline"
               nama="KTP"
               nama2="ELEKTRONIK"
@@ -278,19 +259,31 @@ export default function Home({navigation}) {
               marginTop: 15,
             }}>
             <DataKategori
-              onPress={() => navigation.navigate('ListData2')}
+              onPress={() =>
+                navigation.navigate('Laporan2', {
+                  id: 'Kartu keluarga',
+                })
+              }
               icon="folder-outline"
               nama="KARTU"
               nama2="KELUARGA"
             />
             <DataKategori
-              onPress={() => navigation.navigate('ListData')}
+              onPress={() =>
+                navigation.navigate('Laporan2', {
+                  id: 'KTP',
+                })
+              }
               icon="log-out-outline"
               nama="PERPINDAHAN"
               nama2="KELUAR"
             />
             <DataKategori
-              onPress={() => navigation.navigate('ListData2')}
+              onPress={() =>
+                navigation.navigate('Laporan2', {
+                  id: 'Surat Pindah Datang',
+                })
+              }
               icon="log-in-outline"
               nama="KEDATRANGAN"
               nama2="PENUDUDUK"
@@ -306,19 +299,31 @@ export default function Home({navigation}) {
               marginTop: 15,
             }}>
             <DataKategori
-              onPress={() => navigation.navigate('ListData2')}
+              onPress={() =>
+                navigation.navigate('Laporan2', {
+                  id: 'Kartu Identitas Anak',
+                })
+              }
               icon="card-outline"
               nama="KARTU"
               nama2="IDENTITAS ANAK"
             />
             <DataKategori
-              onPress={() => navigation.navigate('ListData')}
+              onPress={() =>
+                navigation.navigate('Laporan2', {
+                  id: 'Update Data',
+                })
+              }
               icon="create-outline"
               nama="UPDATE"
               nama2="DATA"
             />
             <DataKategori
-              onPress={() => navigation.navigate('ListData2')}
+              onPress={() =>
+                Linking.openURL(
+                  `https://api.whatsapp.com/send?phone=${company.tlp}&text=Hallo%20Dukcapil%20Butor`,
+                )
+              }
               icon="logo-whatsapp"
               nama="PUSAT"
               nama2="INFORMASI"

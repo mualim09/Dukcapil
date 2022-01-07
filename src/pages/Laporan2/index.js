@@ -18,7 +18,7 @@ export default function ({route}) {
     setVisible(false);
   };
 
-  const myUrl = `https://zavalabs.com/dukcapil/api/menu_detail.php?id=${item.id}`;
+  const myUrl = `https://zavalabs.com/dukcapil/api/menu_utama.php?id=${item.id}`;
 
   return (
     <SafeAreaView

@@ -103,7 +103,7 @@ export default function EditProfile({navigation, route}) {
     setLoading(true);
     console.log('kirim edit', data);
     axios
-      .post('https://zavalabs.com/tubaba/api/profile.php', data)
+      .post('https://zavalabs.com/dukcapil/api/profile.php', data)
       .then(res => {
         console.log(res);
         storeData('user', res.data);
@@ -136,25 +136,13 @@ export default function EditProfile({navigation, route}) {
               padding: 10,
             }}>
             <MyButton
-              warna={colors.primary}
+              warna={colors.tertiary}
               title="Simpan Perubahan"
               Icons="log-in"
               onPress={simpan}
             />
           </View>
         </View>
-        <MyGap jarak={10} />
-        <MyInput
-          label="NIP"
-          iconname="card-outline"
-          value={data.nip}
-          onChangeText={value =>
-            setData({
-              ...data,
-              nip: value,
-            })
-          }
-        />
 
         <MyGap jarak={20} />
         <MyInput
@@ -192,6 +180,18 @@ export default function EditProfile({navigation, route}) {
             setData({
               ...data,
               telepon: value,
+            })
+          }
+        />
+        <MyGap jarak={10} />
+        <MyInput
+          label="Alamat"
+          iconname="map-outline"
+          value={data.alamat}
+          onChangeText={value =>
+            setData({
+              ...data,
+              alamat: value,
             })
           }
         />

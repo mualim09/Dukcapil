@@ -48,6 +48,7 @@ import {
   ListData2,
   Jadwal,
   SuratIzin,
+  Laporan2,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator} from '../components';
@@ -172,6 +173,15 @@ export default function Router() {
           headerShown: false,
         }}
       />
+
+      <Stack.Screen
+        name="Laporan2"
+        component={Laporan2}
+        options={{
+          headerShown: false,
+        }}
+      />
+
       <Stack.Screen
         name="Login"
         component={Login}
@@ -596,9 +606,9 @@ export default function Router() {
         component={EditProfile}
         options={({route, navigation}) => ({
           title: 'Edit Profile',
-          headerTintColor: 'black',
+          headerTintColor: colors.white,
           headerStyle: {
-            backgroundColor: colors.tertiary,
+            backgroundColor: colors.primary,
             elevation: 0, // remove shadow on Android
           },
           cardStyleInterpolator: ({current, layouts}) => {
